@@ -1,2 +1,2 @@
 # Python-Bootcamp
-Simple functions from my boot camp courses
+Simple functions and tasks from my boot camp courses
