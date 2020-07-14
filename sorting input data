@@ -1,0 +1,17 @@
+# first ask the user how many items to add to the list
+# than asks the user to type the items
+# adds them to a list and prints it out
+
+n = input("how many elements would you like to sort?: \n")
+array = []
+if n.isdigit() and int(n) != 0:
+    n = int(n)
+    while n > 0 :
+        element = input("Enter a element: \n")
+        array.append(element)
+        n -= 1
+        array.sort()
+        print (f"Your list now contains : {array}")
+
+else :
+    print("Enter something other than 0 please")
