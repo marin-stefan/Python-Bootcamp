@@ -1,0 +1,120 @@
+## the task is to create a cd-dvd collection with a 6 option menu stored in a dictionary
+## first option adds to the dictionary on the first open key in dictionary, second one displays the collection, third deletes everything, forth deletes individually
+## fifth searches by title or key(position) ,and last exits the program.
+
+colectie = {}
+lista = []
+print("\t\t Welcome to the CD-DVD menu")
+
+while True:
+    print(\
+"""
+0-Adaugare CD/DVD nou
+1-Afisare colectie CD/DVD-uri
+2-Stergere colectia complet
+3-Stergere CD/DVD din lista
+4-Cautare dupa Titlu
+q-Iesire din program
+""")
+
+    alegere = input("\tCe optiune doriti sa alegeti?: \n")
+
+#add to collection, option 0
+
+    if alegere == "0":
+        print("Adaugati un element nou: ")
+        titlu = input("Scrieti Titlul: \n")
+        for d in colectie.values():
+            lista.append(d[0])
+        if titlu not in lista:
+            continut = input("Scrieti Continutul: \n")
+            for a in range(len(colectie) + 1):
+                if a not in colectie.keys():
+                    colectie[a] = [titlu, continut]
+        else:
+            print("Titlul este deja prezent")
+          
+        
+#afisare meniu 1
+
+    elif alegere == "1":
+        if len(colectie) > 0:
+            print("Colectia dvs contine: \n")
+            for element in colectie:
+                print(element, "==> ", colectie[element])
+        else:
+            print("\tColectia este momentan goala!!")
+        input("\n Apasa o tasta pentru a continua")
+
+#delete everything, option 2
+        
+    elif alegere == "2":
+        if len(colectie) == 0:
+            print("\tColectia este goala, nu aveti ce sa stergeti!!")
+            input("\nApasa o tasta pentru a continua")
+        else:
+            print("Sunteti sigur ca doriti sa stergeti colectia? ")
+            selectie = input("Apasati D pentru DA , sau N pentru NU\n")
+            if selectie.upper() == "D":
+                colectie = {}
+                lista = []
+                print("\t\tColectia a fost stearsa!!!")
+                input("\nApasa o tasta pentru a continua")
+            elif selectie.upper() == "N":
+                print("Colectia nu a fost stearsa")
+            else:
+                print("Selectia este incorecta")
+                input("\nApasa o tasta pentru a continua")
+
+#individual delete, option 3
+               
+    elif alegere == "3":
+        if len(colectie) > 0:
+            print("Colectia dvs contine: \n")
+            for element in colectie:
+                print(element, "==> ", colectie[element])
+            stergere = input("\nCe element doriti sa stergeti: \n")
+            if stergere.isdigit():
+                stergere = int(stergere)
+                if stergere in colectie.keys():
+                    del colectie[stergere]
+            elif stergere.isalpha():
+                for b in colectie.values():
+                    if stergere == b[0]:
+                        for cheie, valoare in colectie.items():
+                            if valoare == b:
+                                pass
+                del colectie[cheie]
+                    
+        else:
+            print("\tColectia este momentan goala!!")
+            input("\n Apasa o tasta pentru a continua")
+        
+#search for title, option 4
+            
+    elif alegere == "4":
+        if len(colectie) < 1:
+            print("\tColectia este momentan goala!!")
+        else:
+            cautare = input("Scrieti titlul sau pozitia va rog \n")
+            if cautare.isdigit():
+                cautare = int(cautare)
+                print(f"La pozitia {cautare} se afla ==> {colectie[cautare]}")
+            elif cautare.isalpha():
+                for c in colectie.values():
+                    if cautare == c[0]:
+                        for cheie, valoare in colectie.items():
+                            if valoare == c:
+                                print(f"Titlul {cautare} este prezent la pozitia {cheie} :")
+                                print(f"{cheie} == >  {colectie[cheie]}")
+                else:
+                    print("Titlul nu este prezent")
+            input("\n Apasa o tasta pentru a continua")
+        
+    
+#Q for quit
+    
+    elif alegere.lower() == "q":
+        
+        print("\t\tLa revedere!!!")
+        break
