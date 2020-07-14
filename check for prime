@@ -1,0 +1,14 @@
+def is_prime():
+    """ Function takes user input as integer via keyboard and checks if it is prime """
+    num = int(input())
+    if num > 1:
+        for j in range(2, num + 1):
+            if num == 2 :
+                return "Number is prime"
+            elif num % j == 0:
+                return "Number is not prime"
+            else:
+                return "Number is prime"
+    return "Number is not prime"
+
+print(is_prime())
