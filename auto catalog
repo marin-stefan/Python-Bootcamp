@@ -1,0 +1,71 @@
+## the task was to write a Auto catalog with 3 classes, class 2 and 3 inherit class 1 but each have a certain extra argument 
+## first class has methods for accepting colour argument and a method to display the colour.
+## class 2 and 3 have methods that accept the heated seats and led lights arguments and also methonds that displays their current status
+
+class clasa1:
+
+    def __init__(self, marca, tip, culoare = None):
+        """ The class takes make and model as parameters and at initialisation it creates a argument for colour """
+        """ Clasa preia marca si tip ca parametrii si la initializare se creaza un nou argument culoare. """
+        self.marca = marca
+        self.tip = tip
+        self.culoare = culoare
+
+    def modifica_culoare(self):
+        """ Modifies the colour with user input """
+        """ Modifica atributul culoare prin input de la user """
+        self.culoare = input(f"Ce culoare este {self.marca} {self.tip}? :\n")
+        return  
+   
+    def afisare_culoare(self):
+        """ Displays colour """
+        """ Afiseaza culoare """
+        return self.culoare
+
+
+class clasa2(clasa1):
+    
+    def __init__(self, marca, tip, scaune_incalzite = None):
+        """ Class inherits init from classa1 and we have a extra argument for heated seats """
+        """ Clasa mosteneste init de la clasa1 si in plus avem argument nou scaune_incalzite """
+        super(clasa2, self).__init__(marca, tip)
+        self.scaune_incalzite = scaune_incalzite
+
+    def modificare_scaune_incalzite(self):
+        """ Modifies tha value of the heated seats option """
+        """ Modificam valoarea argumentului scaune incalzite """
+        self.scaune_incalzite = input(f"{self.marca} {self.tip} are Scaune incalzite?: <Da> sau <Nu>\n")
+        return
+
+
+class clasa3(clasa1):
+    """ Class inherits init from classa1 and we have a extra argument for LED Headlights """
+    """ Clasa mosteneste clasa1 si in plus avem argument Blocuri_Optice_LED """
+    def __init__(self, marca, tip, Blocuri_Optice_LED=None):
+        super(clasa3, self).__init__(marca, tip)
+        self.Blocuri_Optice_LED = Blocuri_Optice_LED
+
+    def modificare_Blocuri_Optice_LED(self):
+        """ Modifies the value of the LED Headlights option """
+        """ Modificam valoarea argumentului Blocuri optice LED """
+        self.Blocuri_Optice_LED = input(f"{self.marca} {self.tip} are Blocuri Optice LED?: <Da> sau <Nu>\n")
+
+    
+#MAIN
+#some test scenarios 
+masina1 = clasa2("ARO", "M461")
+masina1.modificare_scaune_incalzite()
+masina1.modifica_culoare()
+masina2 = clasa3("Dacia", "1310")
+masina2.modificare_Blocuri_Optice_LED()
+masina2.modifica_culoare()
+
+print("Prima masina ==> culoare ==> ", masina1.afisare_culoare())
+print("Prima masina ==> Optiune-scaune incalzite ==> ", masina1.scaune_incalzite)
+print("Prima masina ==> marca ==> ", masina1.marca)
+print("Prima masina ==> tip ==> ", masina1.tip)
+
+print("A doua masina ==> culoare ==> ", masina2.afisare_culoare())
+print("A doua masina == Optiune-Blocui Optice LED ==> ", masina2.Blocuri_Optice_LED)
+print("A doua masina ==> marca ==> ", masina2.marca)
+print("A doua masina ==> tip ==> ", masina2.tip)
