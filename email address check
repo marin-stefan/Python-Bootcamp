@@ -1,0 +1,27 @@
+## The task was to ask user to input a email adress.
+## the adress has to fit a certain format : letters_or_digits@letters_or_digits.letters 
+## also the  " @ " or " . " (dot) must be present only once in the entire string
+
+address = input("Please enter your email address: \n")
+if "@" in address:                                                                          # Checks for @ ,all email adresses have "@"
+    address_split = address.split("@")                                                       # splits string in 2 ,pre "@" and post "@" and storing it into 2 variables for ease
+    if not len(address_split) > 2:                                                          
+        address1 = address_split[0]
+        address2 = address_split[1]
+        if "." in address2:                                                                 #checks for the "." in the post "@" part
+            address2_split = address2.split(".")                      
+            if not len(address2_split) > 2:                                                 # checks for the length , it must fit a certain format
+                address21 = address2_split[0]
+                address22 = address2_split[1]
+                if address1.isalnum() and address21.isalnum() and address22.isalpha():
+                    print(f"\nYou entered: {address} \nThank you \nEmail address is valid")
+                else:
+                    print(f"\tAddress \"{address}\" is not a valid email address ")
+            else:
+                print(f"\tAddress \"{address}\" is not a valid email address ")
+        else:
+            print(f"\tAddress \"{address}\" nis not a valid email address ")
+    else:
+        print(f"\tAddress \"{address}\" is not a valid email address ")
+else:
+    print(f"\tAddress \"{address}\" is not a valid email address ")
