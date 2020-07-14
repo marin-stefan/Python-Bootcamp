@@ -1,0 +1,21 @@
+def liter_per_100km_to_mpg(liters):
+    galons = liters / 3.785411784
+    miles = 100/1.609344
+    x = miles / galons
+    return x
+
+
+
+def mpg_to_liter_per_100_km(miles):
+    km = miles*1.609344
+    liter = 3.785411784*100 
+    y = liter / km
+    return y
+    
+#Main  # test values
+pprint(liter_per_100km_to_mpg(3.9))
+print(liter_per_100km_to_mpg(7.5))
+print(liter_per_100km_to_mpg(10.))
+print(mpg_to_liter_per_100_km(60.3))
+print(mpg_to_liter_per_100_km(31.4))
+print(mpg_to_liter_per_100_km(23.5))
