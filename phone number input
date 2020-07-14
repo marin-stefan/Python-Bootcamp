@@ -1,0 +1,13 @@
+nr = input("Please enter your phone number: \n")
+if nr.isdigit():                                                         # all phone numbers have only digits 
+    if nr.startswith("07"):                                              # all mobile phone numbers here start with "07"
+        if len(nr) == 10:                                                # all mobile phone numbers here have 10 digits
+            print(f"Thank you!, your phone number \"{nr}\" was accepted ")
+        elif len(nr) > 10:
+            print(f"The phone number \"{nr}\" is to long ")
+        elif len(nr) < 10:
+            print(f"The phone number \"{nr}\" is to short ")
+    else :
+         print(f"The phone number \"{nr}\" is not the correct format ")
+else :
+    print(f"The phone number \"{nr}\" is not correct, please only use digits")
