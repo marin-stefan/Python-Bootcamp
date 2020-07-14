@@ -1,0 +1,20 @@
+## the task was to ask the user for a input,a number and add that to a list in a loop through a while loop
+## every time printing the items of the list and also the lowest and highest of the numbers entered till that point
+## only way to exit the infinnite loop is for the user to press q from the keyboard
+
+array = []
+while True:
+    newnr = input("\nType in a number or press \"Q\" to exit \n")
+    if newnr.upper() == "Q":
+        print("\n\t\tGoodBye")
+        break
+    else:
+        try:
+            newnr = int(newnr)
+            array.append(newnr)
+            print("\tThank you \n")
+            print(f"Your list contains : {array}\n")
+            print("Lowest number is : " , min(array))
+            print("Highest number is : " , max(array))
+        except:
+            print("\nOnly digits please, thank you")
