@@ -1,0 +1,89 @@
+## the task was to create a school catalog that would store classes and grades for each student
+## and display certain statistics as average grades or total classes for each student
+
+class catalog:
+
+    def __init__(self, nume, prenume):
+        """ The class takes name and surname as parameters and at initialisation creates 2 arguments """
+        """ A empty dictionary called materii and a ergument called absente initialised at 0 """
+        """ Clasa preia nume si prenume ca parametrii si la initializare se creaza doua argumente. """
+        """ Un dictionar gol numit materii si un argument numit absente initializat la 0.          """
+        self.nume = nume
+        self.prenume = prenume
+        self.materii = {}
+        self.absente = 0
+
+    def __str__(self):
+        """ Displays missed classes  """
+        """ Afiseaza absentele """
+        a = str(self.absente)
+        return f"Studentul are {a} absente"
+
+    def incrementeaza(self):
+        """ Increments the value of absente by 1 unit , absente is a variable counting the missed classes """
+        """ Incrementeaza absentele cu 1 unitate """
+        self.absente += 1
+        return f"Numarul de absente este acum {self.absente}"
+
+    def stergere(self, nr_absente):
+        """ Deletes a certain number of missed classes from the variable that stores that count """
+        """ Sterge un numar anume de absente """
+        if int(nr_absente) > 0:
+            if int(nr_absente) <= self.absente:
+                self.absente -= int(nr_absente)
+                return f"Numarul de absente este acum {self.absente}"
+            elif int(nr_absente) > self.absente:
+                return f"Nu puteti motiva mai multe absente decat exista"                                
+        return f"Numarul de absente de motivat nu poate fi negativ sau 0"
+
+
+class extensie1(catalog):
+
+    def adaugare_materie(self, nume_materie, *args):
+        """ Adds another class and a number of "n" grades to that specific class """
+        """ Adauga materie si un nr de 'n' note pt respectiva materie """
+        lista_note = []
+        for i in args:
+            lista_note.append(i)    
+        self.materii[nume_materie]=[lista_note]
+        return "Modificarea a fost efectuata"
+
+    def afisare_materii(self):
+        """ Displays every student's classes"""
+        """ Afiseaza materiile fiecarui student """
+        a = ""
+        for i in (self.materii).keys():
+            a +=(" "+i)+ " "
+        print(f"Studentul {self.nume} {self.prenume} are urmatoarele materii ==> {a}")
+                
+    def afisare_medii(self):
+        """ Displays the average grade of every student for each class """
+        """ Afiseaza media notelor fiecarui student pentru fiecare materie """
+        for i in self.materii:
+            for j in (self.materii)[i]:
+                medie = sum(j)/(len(j))    
+                print(f"Studentul {self.nume} {self.prenume} are la materia ==> {i} media ==> {medie}")
+
+
+#MAIN 
+student1 = extensie1("Ion", "Roata")
+student1.incrementeaza()
+student1.incrementeaza()
+student1.incrementeaza()
+student1.stergere(2)
+student2 = extensie1("George","Cerc")
+student2.incrementeaza()
+student2.incrementeaza()
+student2.incrementeaza()
+student2.incrementeaza()
+student2.stergere(2)
+print(student1.absente)
+print(student2.absente)
+student1.adaugare_materie("Python",10,10,10)
+student2.adaugare_materie("Python",6,8,10)
+student2.adaugare_materie("Matematica",8,7,9)
+student1.adaugare_materie("Romana",8,9,10)
+student1.afisare_materii()
+student2.afisare_materii()
+student1.afisare_medii()
+student2.afisare_medii()
