@@ -1,0 +1,139 @@
+class catalog:
+    
+    lista_elemente = []
+    clasa = ""
+    subclasa = ""
+
+    def __init__(self, pret, consum, producator, cod_produs):
+        """ Clasa preia 4 parametrii pret,consum,producator si cod_produs """
+        """ La initializare se populeaza lista clasei lista_elemente cu fiecare obiect. """
+        self.pret = pret
+        self.consum = consum
+        self.producator = producator
+        self.cod_produs = cod_produs
+        catalog.lista_elemente.append(self)
+
+    def sorteaza_dupa_pret(self):
+        """ Functia sorteaza obiectele dupa pret si apeleaza """
+        """ functia __afiseaza_rezultate pentru a afisa rezultatul """
+        print(f"\tSortare dupa pret : \n")
+        for obiect in sorted(catalog.lista_elemente, key=lambda self: self.pret):
+            obiect.__afiseaza_rezultate()
+
+    def sorteaza_dupa_consum(self):
+        """ Functia sorteaza obiectele dupa consum si apeleaza """
+        """ functia __afiseaza_rezultate pentru a afisa rezultatul """
+        print(f"\tSortare dupa consum : \n")
+        for obiect in sorted(catalog.lista_elemente, key=lambda self: self.consum):
+            obiect.__afiseaza_rezultate()
+
+    def cauta_subclasa(self, tip_clasa):
+        """ Functia cauta in lista clasei o anumita subclasa si afiseaza  """
+        """ numarul de obiecte gasite cat si producatorul,consumul si pretul fiecaruia. """
+        x = 0
+        for obiect in catalog.lista_elemente:
+            if obiect.subclasa == tip_clasa:
+                x += 1
+                print(f"Producator ==>{obiect.producator} consum ==> {obiect.consum}W si pret {obiect.pret} RON")        
+        print(f"Avem in total {x} bucati {tip_clasa} ")
+
+    def cauta_dupa_producator(self, producator):
+        """ Functia cauta in lista de obiecte un anumit producator si afiseaza  """
+        """ numarul de obiecte gasite fabricate de acel producator impreuna cu """
+        """ consumul si pretul fiecarui obiect gasit """
+        x = 0
+        for obiect in catalog.lista_elemente:
+            if obiect.producator == producator:
+                x += 1
+                print(f"Producator ==>{obiect.producator} consum ==> {obiect.consum}W si pret {obiect.pret} RON")        
+        print(f"Avem in total {x} bucati de la producatorul {producator} ")    
+            
+    def __afiseaza_rezultate(self):
+        """ Functia afiseaza producatorul,consumul si pretul obiectelor """
+        print(f"{self.producator}: {self.consum}W consum : pret {self.pret} RON")
+
+
+class Electrocasnice_mari(catalog):
+
+    clasa = "Electrocasnice mari"
+    def __init__(self, pret, consum, producator, cod_produs, adincime, latime, inaltime):
+        """ Clasa copil ce mosteneste atributele pret,consum,producator,cod_produs si la initializare se creaza """
+        """ inca 3 argumente adincime,latime si inaltime """
+        super(Electrocasnice_mari, self).__init__(pret, consum, producator, cod_produs)
+        self.adincime = adincime
+        self.latime = latime
+        self.inaltime = inaltime
+     
+
+class Electrocasnice_mici(catalog):
+
+    clasa = "Electrocasnice mici"
+    def __init__(self, pret, consum, producator, cod_produs, lungime_cablu, baterie):
+        """ Clasa copil ce mosteneste atributele pret,consum,producator,cod_produs si la initializare se creaza """
+        """ inca 2 argumente lungime_cablu si baterie """
+        super(Electrocasnice_mici, self).__init__(pret, consum, producator, cod_produs)
+        self.lungime_cablu = lungime_cablu
+        self.baterie = baterie
+
+
+class Frigider(Electrocasnice_mari):
+    
+    subclasa = "Frigider"
+    def __init__(self, pret, consum, producator, cod_produs, adincime, latime, inaltime, capacitate_congelator, capacitate_frigider):
+        """ Clasa nepot ce mosteneste atributele pret,consum,producator,cod_produs,adincime,latime si inaltime si la """
+        """ initializare se creaza inca 2 argumente capacitate_congelator si capacitate_frigider """
+        super(Frigider, self).__init__(pret, consum, producator, cod_produs, adincime, latime, inaltime)
+        self.capacitate_congelator = capacitate_congelator
+        self.capacitate_frigider = capacitate_frigider
+
+
+class Aragaz(Electrocasnice_mari):
+    
+    subclasa = "Aragaz"
+    def __init__(self, pret, consum, producator, cod_produs, adincime, latime, inaltime, nr_arzatoare):
+        """ Clasa nepot ce mosteneste atributele pret,consum,producator,cod_produs,adincime,latime si inaltime si la """
+        """ initializare se creaza inca un argument numit nr_arzatoare """
+        super(Aragaz, self).__init__(pret, consum, producator, cod_produs, adincime, latime, inaltime)
+        self.nr_arzatoare = nr_arzatoare
+
+        
+class Mixer(Electrocasnice_mici):
+
+    subclasa = "Mixer"
+    def __init__(self, pret, consum, producator, cod_produs, lungime_cablu, baterie, rotatii_min):
+        """ Clasa nepot ce mosteneste atributele pret,consum,producator,cod_produs,lungime_cablu,baterie si la """
+        """ initializare se creaza inca un argument numit rotatii_min """
+        super(Mixer ,self).__init__(pret, consum, producator, cod_produs, lungime_cablu, baterie)
+        self.rotatii_min = rotatii_min
+
+
+class Fier_calcat(Electrocasnice_mici):
+
+    subclasa = "Fier_calcat"
+    def __init__(self, pret, consum, producator, cod_produs, lungime_cablu, baterie, rezervor ):
+        """ Clasa nepot ce mosteneste atributele pret,consum,producator,cod_produs,lungime_cablu,baterie si la """
+        """ initializare se creaza inca un argument numit rezervor """
+        super(Fier_calcat, self).__init__(pret, consum, producator, cod_produs, lungime_cablu, baterie)
+        self.rezervor = rezervor 
+
+
+#MAIN
+ob1 = Frigider(1799, 160, "Beko", "be4573", 60, 65, 210, 110, 400)
+ob2 = Frigider(1499, 140, "Whirpool", "wh5673", 60, 65, 210, 100, 400)
+
+ob3 = Aragaz(999, 600, "Beko", "bk1005", 60, 65, 100, 5)
+ob4 = Aragaz(1099, 800, "Arctic", "ar1000", 60, 65, 100, 5)
+
+ob5 = Mixer(389, 250, "Delimano", "de9854", 5, 100, 900)
+ob6 = Mixer(415, 330, "Candy", "ca9854", 5, 100, 900)
+
+ob7 = Fier_calcat(400, 900, "Braun", "br9854", 5, 100, 100)
+ob8 = Fier_calcat(510, 1100, "Whirpool", "wh9854", 5, 100, 100)
+
+ob1.sorteaza_dupa_pret()
+print()
+ob1.sorteaza_dupa_consum()
+print()
+ob1.cauta_dupa_producator("Beko")
+print()
+ob1.cauta_subclasa("Frigider")
