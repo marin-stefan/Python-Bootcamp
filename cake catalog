@@ -1,0 +1,97 @@
+## the task was to create a cake catalog with 3 classes.first class takes the price , weight and name  arguments of each cake and stores them into the class list
+## First class must have methods to sort cake by price or weight and also a method to display all cakes with price and name and weight .
+## Second class inherits the first and also adds to atributes for cake with stories or not set to flase and also for glaze set to chocolate
+## third class inherts the first,nothind added
+
+class catalog:
+
+    lista_prajituri = []
+
+    def __init__(self, nume:str, pret:int, gramaj:int):
+        """ Class takes name and price as parameters and at initialisation creates a new argument  """
+        """ for weight.also it adds every object to the class list  """
+        """ Clasa preia Nume si Pret ca parametrii si la initializare se creaza un nou argument. """
+        """ Si anume gramaj.la initializare se va adauga in lista clasei fiecare obiect. """
+        self.nume = nume
+        self.pret = pret
+        self.gramaj = gramaj
+        catalog.lista_prajituri.append(self)
+        
+    def sortare_dupa_gramaj(self):
+        """ Sorts objects by weight leighter first """
+        """ Sorteaza obiectele dupa gramaj de la mic la mare """
+        print("\tSortate dupa gramaj \n")
+        for obiect in sorted(catalog.lista_prajituri, key=lambda self: self.gramaj):
+            obiect.afisare_prajituri()
+        print()    
+
+    def sortare_dupa_pret(self):
+        """ Sorts objects by price  lowest first """
+        """ Sorteaza obiectele dupa pret de la mic la mare """
+        print("\tSortate dupa pret \n")
+        for obiect in sorted(catalog.lista_prajituri, key=lambda self: self.pret):
+            obiect.afisare_prajituri()
+        print()
+
+    def afisare_prajituri(self):
+        """ Displays all instances created """
+        """ Afiseaza obiectele instantiate """
+        print(f"{self.gramaj}grame : {self.nume} : pret {self.pret}")
+        
+
+class tort(catalog):
+
+    def __init__(self,nume:str, pret:int, gramaj:int, etajat=False, glazura = "ciocolata"):
+        """ Class inherits init for catalog class and at initialisation it creates 2 new arguments """
+        """ First is for multiple stories cake set to False and the second is for glaze set to chocolate """
+        """ Clasa mosteneste init de la catalog si la initializare se creaza 2 noi argumente. """
+        """ Primul este etajat initializat la False si al doilea este glazura initializat la "ciocolata". """
+        super(tort, self).__init__(nume, pret, gramaj)
+        self.etajat=etajat
+        self.glazura=glazura
+
+    def modificare_etajat(self, valoare):
+        """ Modifies the value of multiple stories cake """
+        """ Modifica valoarea pentru argumentul etajat """
+        self.etajat = valoare
+        return f"Optiunea etajat a fost schimbata la valoarea {valoare}"
+
+    def afisare_etajat(self):
+        """ Displays the current value for multiple stories cake """
+        """ Afiseaza valoarea argumentului etajat """
+        return f"{self.etajat}"
+   
+    def modificare_glazura(self, valoare):
+        """ Modifies the value of glaze """
+        """ Modifica valoarea pentru argumentul glazura """
+        self.glazura = valoare
+        return f"Optiunea glazura a fost schimbata la valoarea {valoare}"
+
+    def afisare_glazura(self):
+        """ Displays the value of glaze """
+        """ Afiseaza valoarea argumentului glazura """
+        return f"{self.glazura}"
+      
+
+class fursec(catalog):
+    pass
+
+
+#MAIN
+#Test cases :
+cake1=tort("amandina",100,1000)
+cake2=tort("savarina",90,800)
+cake3=tort("negresa",150,1600)
+cookie1=fursec("cornulet",16,30)
+cookie2=fursec("biscuite",25,65)
+cookie3=fursec("piscot",9,120)
+cake1.sortare_dupa_gramaj()
+cake1.sortare_dupa_pret()
+cake1.modificare_etajat(True)
+cake1.modificare_glazura("cacao")
+print("Prajitura",cake1.nume,"are optiunea etajat ",cake1.afisare_etajat())
+print("Prajitura",cake1.nume,"are optiunea glazura ",cake1.afisare_glazura())
+cake2.modificare_etajat(True)
+cake2.modificare_glazura("cacao")
+print("Prajitura",cake2.nume,"are optiunea etajat ",cake2.afisare_etajat())
+print("Prajitura",cake2.nume,"are optiunea glazura ",cake2.afisare_glazura())
