@@ -1,4 +1,5 @@
 def liter_per_100km_to_mpg(liters):
+    """ 1 mile is cca 1.60934 km """
     galons = liters / 3.785411784
     miles = 100/1.609344
     x = miles / galons
@@ -7,6 +8,7 @@ def liter_per_100km_to_mpg(liters):
 
 
 def mpg_to_liter_per_100_km(miles):
+    """ 1 mile is cca 1.60934 km """
     km = miles*1.609344
     liter = 3.785411784*100 
     y = liter / km
